@@ -10,18 +10,16 @@ namespace miniSTL {
 	    typedef T* iterator;
 	    Vector();
 	    Vector(unsigned int size);
-#if 0
-	    Vector(unsigned int size, const T& initial);
-	    Vector(const Vector<T>& v);
-#endif
 	    ~Vector();
 	
 	    unsigned int size() const;
-#if 0
-	    unsigned int capacity() const;
-	    bool empty() const;
 	    iterator begin();
 	    iterator end();
+#if 0
+	    Vector(unsigned int size, const T& initial);
+	    Vector(const Vector<T>& v);
+	    unsigned int capacity() const;
+	    bool empty() const;
 	    T& front();
 	    T& back();
 	    void push_back(const T& v);
@@ -66,6 +64,18 @@ namespace miniSTL {
 	unsigned int Vector<T>::size() const
 	{
 		return vectorSize;
+	}
+
+	template <class T>
+	iterator Vector<T>::begin()
+	{
+		return buffer;
+	}
+
+	template <class T>
+	iterator Vector<T>::end()
+	{
+		return buffer+(size-1)*sizeof(T);
 	}
 
 }
