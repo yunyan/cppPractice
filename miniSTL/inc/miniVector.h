@@ -67,15 +67,15 @@ namespace miniSTL {
 	}
 
 	template <class T>
-	iterator Vector<T>::begin()
+	typename Vector<T>::iterator Vector<T>::begin()
 	{
 		return buffer;
 	}
 
 	template <class T>
-	iterator Vector<T>::end()
+	typename Vector<T>::iterator Vector<T>::end()
 	{
-		return buffer+(size-1)*sizeof(T);
+		return buffer+(size()-1)*sizeof(T);
 	}
 
 }

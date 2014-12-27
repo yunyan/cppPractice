@@ -4,6 +4,12 @@
 using namespace miniSTL;
 
 
+class test {
+		public:
+		int a;
+		int b;
+		int kick(int a, int b);
+};
 
 int main()
 {
