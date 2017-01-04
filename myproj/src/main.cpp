@@ -6,7 +6,9 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
-    CDatabase * db = new CDatabase("/home/yunyan/workspace/cppPractice/myproj/database/test");
-    sqlite3 dbhandler = db->getInstance();
-    return 1;
+    CDatabase * db = new CDatabase("localhost", "root", "root");
+
+    db->createTable("sql_test", "aaa");
+
+    return 0;
 }

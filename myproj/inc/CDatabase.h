@@ -2,21 +2,38 @@
 #define _C_DATABASE_H_H
 
 #include <string>
-#include "sqlite/sqlite3.h"
+#include <memory>
+
+#include <mysql_driver.h>
+#include <mysql_connection.h>
+#include <cppconn/statement.h>
+
+#include "project.h"
+
+
+
+typedef std::unique_ptr<sql::Connection> mysql_connection;
+typedef std::unique_ptr<sql::Statement> mysql_statement;
+
 
 class CDatabase
 {
 public:
 
-    CDatabase () : mDBName(NULL), mDB(NULL);
-    CDatabase (String DBName) : mDBName(DBName), mDB(NULL);
+    CDatabase(std::string url, std::string users, std::string pass);
 
     virtual ~CDatabase ();
     
-    sqlite3* getInstance();
+    bool createTable(std::string tableName, std::string dbName = nullptr); 
+
 private:
-    String mDBName;
-    sqlite3 * mDB;
+
+    const mysql_connection& getConnectionInstance();
+
+    std::string m_db_url;
+    std::string m_db_username;
+    std::string m_db_pass;
+    mysql_connection m_db_conn;
 };
 
 #endif
