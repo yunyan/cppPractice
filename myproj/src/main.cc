@@ -9,7 +9,7 @@ int main()
 
     unique_ptr<Database> db(new Database("localhost", "root", "root"));
 
-    db->createTable("sql_test", "test");
+    db->CreateTable("sql_test", "test");
 
     return 0;
 }

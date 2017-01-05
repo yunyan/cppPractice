@@ -12,8 +12,8 @@
 
 
 
-typedef std::unique_ptr<sql::Connection> mysql_connection;
-typedef std::unique_ptr<sql::Statement> mysql_statement;
+typedef std::unique_ptr<sql::Connection> MySqlConnection;
+typedef std::unique_ptr<sql::Statement> MySqlStatement;
 
 
 class Database
@@ -24,18 +24,18 @@ public:
 
     virtual ~Database ();
     
-    bool createTable(std::string tableName, std::string dbName = nullptr); 
+    bool CreateTable(std::string tablename, std::string dbname = nullptr); 
 
-    bool dummy();
+    bool Dummy();
 
 private:
 
-    const mysql_connection& getConnectionInstance();
+    const MySqlConnection& GetConnectionInstance();
 
-    std::string m_db_url;
-    std::string m_db_username;
-    std::string m_db_pass;
-    mysql_connection m_db_conn;
+    std::string db_url_;
+    std::string db_username_;
+    std::string db_pass_;
+    MySqlConnection db_conn_;
 };
 
 #endif

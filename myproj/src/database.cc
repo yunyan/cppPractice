@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Database::Database(string url, string user, string pass) : m_db_url (url), m_db_username (user), m_db_pass (pass), m_db_conn (nullptr)
+Database::Database(string url, string user, string pass) : db_url_ (url), db_username_ (user), db_pass_ (pass), db_conn_ (nullptr)
 {
 
 }
@@ -14,32 +14,32 @@ Database::~Database()
 }
 
 
-const mysql_connection& Database::getConnectionInstance()
+const MySqlConnection& Database::GetConnectionInstance()
 {
-    if (!m_db_conn){
+    if (!db_conn_){
 
          sql::Driver * driver = sql::mysql::get_driver_instance();
 
-         m_db_conn.reset(driver->connect(m_db_url, m_db_username, m_db_pass));
+         db_conn_.reset(driver->connect(db_url_, db_username_, db_pass_));
     }
 
-    return m_db_conn;
+    return db_conn_;
 }
 
 
-bool Database::createTable(string tableName, string dbName)
+bool Database::CreateTable(string tablename, string dbname)
 {
-    mysql_statement stmt(getConnectionInstance()->createStatement());
+    MySqlStatement stmt(GetConnectionInstance()->createStatement());
     string sql_str;
 
     try {
 
-        if(!dbName.empty()) {
-            stmt->execute("USE " + dbName);
+        if(!dbname.empty()) {
+            stmt->execute("USE " + dbname);
         }
 
-        stmt->execute("DROP TABLE IF EXISTS " + tableName);
-        stmt->execute("CREATE TABLE " + tableName + " (id INT, lable CHAR(1))");
+        stmt->execute("DROP TABLE IF EXISTS " + tablename);
+        stmt->execute("CREATE TABLE " + tablename + " (id INT, lable CHAR(1))");
 
     }catch (sql::SQLException &e) {
             cout << "# ERR: SQLException in " << __FILE__;
@@ -55,7 +55,7 @@ bool Database::createTable(string tableName, string dbName)
 
 }
 
-bool Database::dummy()
+bool Database::Dummy()
 {
    return true;
 }
