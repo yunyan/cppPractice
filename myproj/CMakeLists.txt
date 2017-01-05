@@ -8,6 +8,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(PROJ_NAME myproj)
 project(${PROJ_NAME})
 
+# Run unit testing by "make test"
+enable_testing()
+
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -Wextra")
 
 add_subdirectory(src)

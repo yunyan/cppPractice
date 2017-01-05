@@ -1,5 +1,3 @@
-#enable_testing()
-
 set(TEST_FILES ${TEST_FILES}
     CDatabase_test.cpp
     )
@@ -28,4 +26,11 @@ foreach(f ${TEST_FILES})
    else()
     target_link_libraries(${TEST_BIN_FILE} gtest gtest_main)
    endif()
+
+# run testing binaries
+   add_test(NAME ${TEST_BIN_FILE} 
+            COMMAND ${TEST_BIN_FILE}
+            )
+
 endforeach()
+
