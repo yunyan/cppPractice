@@ -1,6 +1,6 @@
 set(SRCFILE 
-    database.cpp 
-    main.cpp
+    database.cc
+    main.cc
   )
 
 set(INCLUDEDIR ${INCLUDEDIR} 

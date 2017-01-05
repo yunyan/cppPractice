@@ -1,5 +1,5 @@
 set(TEST_FILES ${TEST_FILES}
-    database_test.cpp
+    database_test.cc
     )
 
 SET(INCLUDE_DIR ${PROJECT_BINARY_DIR}/googletest-src/googletest/include 
@@ -16,9 +16,9 @@ link_directories(${LIBDIR})
 
 # Generate taragets
 foreach(f ${TEST_FILES})
-   string(REPLACE "_test.cpp" ".cpp" SRC_FILE ${f})
+   string(REPLACE "_test.cc" ".cc" SRC_FILE ${f})
    set(SRC_FILES ${CMAKE_SOURCE_DIR}/src/${SRC_FILE})
-   string(REPLACE ".cpp" "" TEST_BIN_FILE ${f})
+   string(REPLACE ".cc" "" TEST_BIN_FILE ${f})
    add_executable(${TEST_BIN_FILE} ${TEST_FILES} ${SRC_FILES})
    string(COMPARE EQUAL ${TEST_BIN_FILE} "database_test" NEEDDBLIB)
    if(${NEEDDBLIB})
