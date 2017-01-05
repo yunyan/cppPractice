@@ -1,5 +1,5 @@
 set(TEST_FILES ${TEST_FILES}
-    CDatabase_test.cpp
+    database_test.cpp
     )
 
 SET(INCLUDE_DIR ${PROJECT_BINARY_DIR}/googletest-src/googletest/include 
@@ -20,7 +20,7 @@ foreach(f ${TEST_FILES})
    set(SRC_FILES ${CMAKE_SOURCE_DIR}/src/${SRC_FILE})
    string(REPLACE ".cpp" "" TEST_BIN_FILE ${f})
    add_executable(${TEST_BIN_FILE} ${TEST_FILES} ${SRC_FILES})
-   string(COMPARE EQUAL ${TEST_BIN_FILE} "CDatabase_test" NEEDDBLIB)
+   string(COMPARE EQUAL ${TEST_BIN_FILE} "database_test" NEEDDBLIB)
    if(${NEEDDBLIB})
     target_link_libraries(${TEST_BIN_FILE} gtest gtest_main mysqlcppconn)
    else()

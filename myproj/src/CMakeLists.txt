@@ -1,5 +1,5 @@
 set(SRCFILE 
-    CDatabase.cpp 
+    database.cpp 
     main.cpp
   )
 

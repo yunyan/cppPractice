@@ -1,20 +1,20 @@
-#include "CDatabase.h"
+#include "database.h"
 
 using namespace std;
 
-CDatabase::CDatabase(string url, string user, string pass) : m_db_url (url), m_db_username (user), m_db_pass (pass), m_db_conn (nullptr)
+Database::Database(string url, string user, string pass) : m_db_url (url), m_db_username (user), m_db_pass (pass), m_db_conn (nullptr)
 {
 
 }
 
 
-CDatabase::~CDatabase()
+Database::~Database()
 {
 
 }
 
 
-const mysql_connection& CDatabase::getConnectionInstance()
+const mysql_connection& Database::getConnectionInstance()
 {
     if (!m_db_conn){
 
@@ -27,7 +27,7 @@ const mysql_connection& CDatabase::getConnectionInstance()
 }
 
 
-bool CDatabase::createTable(string tableName, string dbName)
+bool Database::createTable(string tableName, string dbName)
 {
     mysql_statement stmt(getConnectionInstance()->createStatement());
     string sql_str;
@@ -55,7 +55,7 @@ bool CDatabase::createTable(string tableName, string dbName)
 
 }
 
-bool CDatabase::dummy()
+bool Database::dummy()
 {
    return true;
 }

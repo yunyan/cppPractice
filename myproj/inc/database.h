@@ -16,13 +16,13 @@ typedef std::unique_ptr<sql::Connection> mysql_connection;
 typedef std::unique_ptr<sql::Statement> mysql_statement;
 
 
-class CDatabase
+class Database
 {
 public:
 
-    CDatabase(std::string url, std::string users, std::string pass);
+    Database(std::string url, std::string users, std::string pass);
 
-    virtual ~CDatabase ();
+    virtual ~Database ();
     
     bool createTable(std::string tableName, std::string dbName = nullptr); 
 
