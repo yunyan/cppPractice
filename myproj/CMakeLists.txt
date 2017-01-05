@@ -1,11 +1,19 @@
 cmake_minimum_required(VERSION 2.6)
 cmake_policy(SET CMP0037 OLD)
 
-project(myproj)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
+set(PROJ_NAME myproj)
+project(${PROJ_NAME})
+
+set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -Wextra")
 
 add_subdirectory(src)
 add_subdirectory(test)
 include_directories(inc)
+
 
 # gooletest
 configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)

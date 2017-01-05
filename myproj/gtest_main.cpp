@@ -1,3 +1,5 @@
+// THIS FILE IS DEPRECATED. DO NOT USE
+
 #include <iostream>
 #include "gtest/gtest.h"
 

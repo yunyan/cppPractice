@@ -1,16 +1,31 @@
-enable_testing()
+#enable_testing()
 
-set(TEST_FILES 
-    gtest_main.cpp 
+set(TEST_FILES ${TEST_FILES}
     CDatabase_test.cpp
     )
 
-include_directories(${PROJECT_BINARY_DIR}/googletest-src/googletest/include)
-include_directories(${PROJECT_SOURCE_DIR}/inc)
+SET(INCLUDE_DIR ${PROJECT_BINARY_DIR}/googletest-src/googletest/include 
+                ${PROJECT_SOURCE_DIR}/inc
+                )
 
-add_executable(myproj_ut ${TEST_FILES})
-target_link_libraries(myproj_ut gtest)
-link_directories(${PROJECT_SOURCE_DIR}/src)
-target_compile_features(myproj_ut PRIVATE cxx_range_for)
+include_directories(${INCLUDE_DIR})
 
-#set(LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
+set(LIBDIR ${LIBDIR} 
+    /usr/local/lib/libmysqlcppconn
+    )
+
+link_directories(${LIBDIR})
+
+# Generate taragets
+foreach(f ${TEST_FILES})
+   string(REPLACE "_test.cpp" ".cpp" SRC_FILE ${f})
+   set(SRC_FILES ${CMAKE_SOURCE_DIR}/src/${SRC_FILE})
+   string(REPLACE ".cpp" "" TEST_BIN_FILE ${f})
+   add_executable(${TEST_BIN_FILE} ${TEST_FILES} ${SRC_FILES})
+   string(COMPARE EQUAL ${TEST_BIN_FILE} "CDatabase_test" NEEDDBLIB)
+   if(${NEEDDBLIB})
+    target_link_libraries(${TEST_BIN_FILE} gtest gtest_main mysqlcppconn)
+   else()
+    target_link_libraries(${TEST_BIN_FILE} gtest gtest_main)
+   endif()
+endforeach()
