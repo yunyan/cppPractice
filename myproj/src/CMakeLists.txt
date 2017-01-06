@@ -8,4 +8,6 @@ add_executable(myproj ${SRCFILE})
 target_compile_features(myproj PRIVATE cxx_range_for)
 target_link_libraries(myproj mysqlcppconn)
 
+set (EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+
 
