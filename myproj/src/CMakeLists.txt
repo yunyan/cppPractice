@@ -14,6 +14,10 @@ add_executable(myproj ${SRCFILE})
 target_compile_features(myproj PRIVATE cxx_range_for)
 target_link_libraries(myproj mysqlcppconn)
 
+if(NOT EXISTS ${PROJECT_BINARY_DIR}/bin})
+  file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
+endif()
+
 set (EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 
 
