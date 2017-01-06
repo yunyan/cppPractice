@@ -35,11 +35,11 @@ bool CDatabase::createTable(string tableName, string dbName)
     try {
 
         if(!dbName.empty()) {
-            stmt->execute("USE" + dbName);
+            stmt->execute("USE " + dbName);
         }
 
-        stmt->execute("DROP TABLE IF EXISTS" + tableName);
-        stmt->execute("CREATE TABLE" + tableName + "(id INT, lable CHAR(1))");
+        stmt->execute("DROP TABLE IF EXISTS " + tableName);
+        stmt->execute("CREATE TABLE " + tableName + " (id INT, lable CHAR(1))");
 
     }catch (sql::SQLException &e) {
             cout << "# ERR: SQLException in " << __FILE__;
