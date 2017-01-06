@@ -6,7 +6,8 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
-    CDatabase * db = new CDatabase("localhost", "root", "root");
+
+    unique_ptr<CDatabase> db(new CDatabase("localhost", "root", "root"));
 
     db->createTable("sql_test", "test");
 
