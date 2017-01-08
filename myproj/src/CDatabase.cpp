@@ -54,3 +54,8 @@ bool CDatabase::createTable(string tableName, string dbName)
     return true;
 
 }
+
+bool CDatabase::dummy()
+{
+   return true;
+}

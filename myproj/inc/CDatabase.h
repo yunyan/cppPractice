@@ -26,6 +26,8 @@ public:
     
     bool createTable(std::string tableName, std::string dbName = nullptr); 
 
+    bool dummy();
+
 private:
 
     const mysql_connection& getConnectionInstance();
